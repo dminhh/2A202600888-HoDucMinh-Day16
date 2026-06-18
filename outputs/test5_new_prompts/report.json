@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "dataset": "hotpot_test5.json",
+    "mode": "mock",
+    "num_records": 10,
+    "agents": [
+      "react",
+      "reflexion"
+    ]
+  },
+  "summary": {
+    "react": {
+      "count": 5,
+      "em": 0.2,
+      "avg_attempts": 1,
+      "avg_token_estimate": 2070.8,
+      "avg_latency_ms": 2938
+    },
+    "reflexion": {
+      "count": 5,
+      "em": 0.2,
+      "avg_attempts": 2.6,
+      "avg_token_estimate": 6085,
+      "avg_latency_ms": 9350
+    },
+    "delta_reflexion_minus_react": {
+      "em_abs": 0.0,
+      "attempts_abs": 1.6,
+      "tokens_abs": 4014.2,
+      "latency_abs": 6412
+    }
+  },
+  "failure_modes": {
+    "react": {
+      "wrong_final_answer": 4,
+      "none": 1
+    },
+    "reflexion": {
+      "wrong_final_answer": 4,
+      "none": 1
+    },
+    "by_type": {
+      "wrong_final_answer": 8
+    }
+  },
+  "examples": [
+    {
+      "qid": "5ae26c795542992decbdccfb",
+      "agent_type": "react",
+      "gold_answer": "Kur\u00e1nyi",
+      "predicted_answer": "Joe Hart",
+      "is_correct": false,
+      "attempts": 1,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 0
+    },
+    {
+      "qid": "5a84b2995542994c784dda11",
+      "agent_type": "react",
+      "gold_answer": "She has appeared in films such as \" Black Mass\", \"The Other Boleyn Girl\", \"Wild Child\", \"Atonement\", \"Maleficent\", \"The Three Musketeers\" and \"The Dark Knight Rises\".",
+      "predicted_answer": "\"Black Mass\", \"The Other Boleyn Girl\", \"Wild Child\", \"Atonement\", \"Maleficent\", \"The Three Musketeers\", \"The Dark Knight Rises\", \"Small Apartments\", \"One Percent More Humid\", \"Wonder Wheel\", \"Magic Magic\", \"Dirty Girl\", \"Jack & Diane\", \"Cracks\", \"Lovelace\"",
+      "is_correct": false,
+      "attempts": 1,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 0
+    },
+    {
+      "qid": "5a7b971255429927d897bff3",
+      "agent_type": "react",
+      "gold_answer": "thirteenth",
+      "predicted_answer": "fifth",
+      "is_correct": false,
+      "attempts": 1,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 0
+    },
+    {
+      "qid": "5a8cefc155429941ae14df55",
+      "agent_type": "react",
+      "gold_answer": "novel with a key",
+      "predicted_answer": "roman \u00e0 clef",
+      "is_correct": true,
+      "attempts": 1,
+      "failure_mode": "none",
+      "reflection_count": 0
+    },
+    {
+      "qid": "5a7ddd565542997cc2c474b2",
+      "agent_type": "react",
+      "gold_answer": "Sister Anthony, S.C.",
+      "predicted_answer": "Mary O'Connell",
+      "is_correct": false,
+      "attempts": 1,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 0
+    },
+    {
+      "qid": "5ae26c795542992decbdccfb",
+      "agent_type": "reflexion",
+      "gold_answer": "Kur\u00e1nyi",
+      "predicted_answer": "Joe Hart",
+      "is_correct": false,
+      "attempts": 3,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 2
+    },
+    {
+      "qid": "5a84b2995542994c784dda11",
+      "agent_type": "reflexion",
+      "gold_answer": "She has appeared in films such as \" Black Mass\", \"The Other Boleyn Girl\", \"Wild Child\", \"Atonement\", \"Maleficent\", \"The Three Musketeers\" and \"The Dark Knight Rises\".",
+      "predicted_answer": "\"Black Mass\", \"The Other Boleyn Girl\", \"Wild Child\", \"Atonement\", \"Maleficent\", \"The Three Musketeers\", \"The Dark Knight Rises\", \"Small Apartments\", \"One Percent More Humid\", \"Wonder Wheel\", \"Magic Magic\", \"Dirty Girl\", \"Jack & Diane\", \"Cracks\", \"Lovelace\"",
+      "is_correct": false,
+      "attempts": 3,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 2
+    },
+    {
+      "qid": "5a7b971255429927d897bff3",
+      "agent_type": "reflexion",
+      "gold_answer": "thirteenth",
+      "predicted_answer": "fifth",
+      "is_correct": false,
+      "attempts": 3,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 2
+    },
+    {
+      "qid": "5a8cefc155429941ae14df55",
+      "agent_type": "reflexion",
+      "gold_answer": "novel with a key",
+      "predicted_answer": "roman \u00e0 clef",
+      "is_correct": true,
+      "attempts": 1,
+      "failure_mode": "none",
+      "reflection_count": 0
+    },
+    {
+      "qid": "5a7ddd565542997cc2c474b2",
+      "agent_type": "reflexion",
+      "gold_answer": "Sister Anthony, S.C.",
+      "predicted_answer": "Mary O'Connell",
+      "is_correct": false,
+      "attempts": 3,
+      "failure_mode": "wrong_final_answer",
+      "reflection_count": 2
+    }
+  ],
+  "extensions": [
+    "structured_evaluator",
+    "reflection_memory",
+    "benchmark_report_json",
+    "mock_mode_for_autograding"
+  ],
+  "discussion": "Experiment results on 5 samples: ReAct achieved EM=0.2, while Reflexion improved to EM=0.2 (+0.0). The dominant failure mode was 'wrong_final_answer', occurring in 4 ReAct errors. Three key failure patterns observed: (1) entity_drift \u2014 agent selects a plausible but incorrect second-hop entity; (2) incomplete_multi_hop \u2014 agent stops at the first hop without completing the chain; (3) wrong_final_answer \u2014 agent reasons correctly but picks the wrong answer at the end. Reflexion reduced errors from 4 to 4 by providing targeted correction strategies. However, 4 cases remained unsolvable within 3 attempts, often due to evaluator hallucination or ambiguous gold answers. The tradeoff is ~4014 extra tokens per query, which is acceptable given the accuracy gain."
+}
